@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link href="/static/css/cblogin.css" rel="stylesheet">
+
+{% endblock head %}
+
+{% block body %}
+<body style="background-color: #555; padding-top: 0px;">
+
+<div class="login-page-container center-div" style="text-align: center;">
+
+<a href="/">
+<img src="/static/img/logo.png" height="50" width="50" />
+</a>
+<h2 class="centered">
+Basic Tech Tips
+</h2>
+<p class="centered">A resource for basic tech tutorials</p>
+<hr>
+
+<!--================================================================================-->
+
+<div class="social-login-container" >
+
+<h4 class="">
+Login With:
+</h4>      
+
+<div class="row no-gutter" style="margin: 0 auto;">  
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">    
+<a href="{% url 'social:begin' 'facebook' %}" class="fa fa-facebook social-login-icon">
+<div class="social-login">Facebook</div>
+</a>
+</div>    
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">    
+<a href="{% url 'social:begin' 'twitter' %}" class="fa fa-twitter social-login-icon">
+<div  class="social-login">Twitter</div>
+</a>
+</div>    
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">    
+<a href="{% url 'social:begin' 'google-oauth2' %}" class="fa fa-google social-login-icon">
+<div  class="social-login">Google</div>
+</a>
+</div>    
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">    
+<a href="{% url 'social:begin' 'linkedin' %}" class="fa fa-linkedin social-login-icon">
+<div class="social-login">Linkedin</div>
+</a>
+</div>    
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">
+<a href="{% url 'social:begin' 'github' %}" class="fa fa-github social-login-icon">
+<div class="social-login">Github</div>
+</a>
+</div>    
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">    
+<a href="{% url 'social:begin' 'instagram' %}" class="fa fa-instagram social-login-icon">
+<div class="social-login">Instagram</div>
+</a>
+</div> 
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">    
+<a href="{% url 'social:begin' 'stackoverflow' %}" class="fa fa-stack-overflow social-login-icon">
+<div class="social-login" style="font-size: 9.7px; padding-top: 12px">Stackoverflow</div>
+</a>
+</div>    
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">
+<a href="{% url 'social:begin' 'slack' %}" class="fa fa-slack  social-login-icon">
+<div class="social-login">Slack</div>
+</a>
+</div>    
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-0 p-0">    
+<a href="{% url 'social:begin' 'reddit' %}" class="fa fa-reddit social-login-icon">
+<div class="social-login">Reddit</div>
+</a>
+</div>     
+
+</div>    
+
+</div>    
+
+<br>
+    <hr>
+<!--    <br>-->
+<!--=============================================================================-->
+<h4 class="">
+Or Use Site Login:
+</h4>  
+<!-- <br>   -->
+<form class="login-page-form" method="post" 
+action="{% url 'login' %}">
+{% csrf_token %}
+
+<div class="form-group{% if form.username.errors %} has-error{% endif %}">    
+<input id="username" name="username" 
+type="text" class="" placeholder="username" value=""/>
+{% for error in form.username.errors %}
+<label class="control-label">{{ error }}</label>
+{% endfor %}
+</div>
+
+<div class="form-group{% if form.password.errors %} has-error{% endif %}">    
+<input id="password" name="password" 
+type="password" class="" placeholder="password"/>
+{% for error in form.password.errors %}
+<label class="control-label">{{ error }}</label>
+{% endfor %}
+</div>
+
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<div class="alert alert-danger alert-dismissable">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+{{ error }}
+</div>
+{% endfor %}
+{% endif %}
+
+<button type="submit" name="submit" class="login-page-button-orange bold" style="margin-top: 10px;">LOGIN</button>
+
+<input type="hidden" name="next" value="{{ next }}" />
+
+</form>
+    
+<br/>
+<a class="register-link" style="" href="{% url 'signup' %}">Register new account</a><br/>    
+    
+<!-- ----------------------------   -->
+</div>
+
+
+
+</body>
+{% endblock body %}

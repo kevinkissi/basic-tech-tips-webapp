@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">   
+<title>{% block title %}Basic Tech Tips{% endblock %}</title>
+<!--    <link rel="icon" type="image/png" href="/static/img/fav.ico">-->
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/btt.css" rel="stylesheet">
+<link href="/static/css/questions.css" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link rel="apple-touch-icon" sizes="57x57" href="/static/img/favion/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/static/img/favion/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/static/img/favion/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/static/img/favion/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/static/img/favion/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/static/img/favion/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/static/img/favion/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/static/img/favion/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/img/favion/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/static/img/favion/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/img/favion/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/static/img/favion/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/img/favion/favicon-16x16.png">
+<link rel="manifest" href="/static/img/favion/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/static/img/favion/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112762353-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-112762353-1');
+</script>      
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="/static/js/jquery-2.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/btt.js"></script>
+
+{% block head %}
+{% endblock head %}
+</head>
+<body>
+{% block body %}
+<header>
+<!-- /.container-fluid -->
+<div class="nav-div" style="padding-bottom:10px;">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+<div class="container-fluid nav-space container">
+<div class="navbar-header page-scroll">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="{% url 'home' %}"><img src="/static/img/logo.png" height="25" width="25" />  Basic Tech Tips</a>
+</div>
+<div class="collapse navbar-collapse" id="menu">
+
+{% if user.is_authenticated %}
+
+<ul class="nav navbar-nav navbar-right">
+<li><a href="{% url 'settings' %}">{{ user.profile.get_non_private_screen_name }}</a></li>
+<li><a href="{% url 'logout' %}">Log out</a></li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+<li><a href="{% url 'questions' %}">Explore</a></li>
+</ul>
+
+{% else %}
+<ul class="nav navbar-nav navbar-right">
+<li><a href="{% url 'login' %}">Login</a></li>
+</ul>
+{% endif %}
+<!--
+<ul class="nav navbar-nav navbar-right">
+<li><a data-toggle="modal" data-target="#howitworks" href="#">How it works</a></li>
+</ul>
+-->
+{% if not hide_search %}
+<form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">
+
+<div class="input-group" style="width:350px;">
+<input type="text" class="form-control" name="q" placeholder="Find questions">
+
+<span class="input-group-btn">
+<button type="submit" class="btn btn-default">Find</span></button>
+</span>
+
+</div>
+
+</form>
+{% endif %}
+</div>
+</div>
+</nav>
+</div>
+
+<!-- how it works modal -->
+<div id="howitworks" class="modal fade" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content" style="border-radius:0px;">
+<div class="modal-body">
+<div class="row">
+<div class="col-md-12">
+<h3>How it works</h3>
+<br>
+<div class="panel panel-default sharp-panel" style="padding:15px;">
+<h4><i class="fa fa-binoculars"></i> Ask questions.</h4>
+</div>
+<div class="panel panel-default sharp-panel" style="padding:15px;">
+<h4><i class="fa fa-link"></i> Get great answers.</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end of how it works modal -->
+
+</header>
+<main>
+<div class="container">
+{% block main %}
+{% endblock main %}
+</div>
+</main>
+{% endblock body %}
+
+<script>
+window.fbAsyncInit = function() {
+FB.init({
+appId      : '118078905510723',
+xfbml      : true,
+version    : 'v2.12'
+});
+
+FB.AppEvents.logPageView();
+
+};
+
+(function(d, s, id){
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) {return;}
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112762353-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-112762353-1');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock head %}
+
+{% block body %}
+  <head>
+    <title>Basic Tech Tips</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- css -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/style.css" rel="stylesheet" media="screen">
+	<link href="/static/color/default.css" rel="stylesheet" media="screen">
+	<script src="/static/js/modernizr.custom.js"></script>
+    <link rel="shortcut icon" href="/static/img/fav.ico" type="image/x-icon">
+    <link rel="icon" href="/static/img/fav.ico" type="image/x-icon">
+  </head>
+  <body class="siteBody">
+  <div class="siteBody-content">
+  <section>
+<!-- intro area -->
+<div id="intro" style="background:linear-gradient(
+rgba(50, 50, 50, 0.95), 
+rgba(0, 0, 0, 0.85)
+), url('/static/img/bg.jpg');
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;">
+
+<div class="intro-text">
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<div class="brand">
+<a href="/">
+<img src="/static/img/logo.png" height="70" width="70" />
+</a>
+<!--<p class="h1">Basic Tech Tips</p>    -->
+<h1 class="company_name" style="font-family: 'Lato', sans-serif;">Basic Tech Tips</h1>
+<div class="line-spacer"></div>
+<h3><p><span>A resource for tech tips</span></h3>
+</div>
+</div>
+</div>
+<div style="margin-top:30px;margin-bottom:60px;" class="row">
+<div class="col-sm-12">
+<a type="button" class="btn btn-theme btn-lg" style="font-size:25px;" href="{% url 'questions' %}">explore</a>
+</div>
+</div>
+
+
+</div>
+</div>
+
+		 </div>
+	</section>
+	  <!-- About -->
+	  <section id="about" class="home-section bg-white">
+		<div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <section class=" questions">
+            {% for question in questions %}
+              {% include 'questions/partial_question.html' with question=question %}
+            {% empty %}
+              <h4 class="no-data">There is no published question yet.<a href="{% url 'write' %}">Be the first one to publish!</a></h4>
+            {% endfor %}
+          </section>
+        </div>
+      </div>
+        </div>
+	  </section>
+</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p>Copyright &copy;2018 basictechtips.com
+. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	</body>
+    {% endblock body %}
+

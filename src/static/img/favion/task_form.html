@@ -1,0 +1,17 @@
+<!--task_form.html-->
+{% load staticfiles %}
+
+<!--some of these-->
+{% block jquery %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>{% endblock jquery %}
+<script src="{% static 'js/bootstrap-dropdown.js' %}"></script>
+<script src="{% static 'js/bootstrap-tab.js' %}"></script>
+<script src="{% static 'js/bootstrap-transition.js' %}"></script>
+<script src="{% static 'js/bootstrap-alert.js' %}"></script>
+<script src="{% static 'js/dynamicForms.js' %}"></script>
+
+<ul id=’message’></ul>
+    <div id="task_form">
+            {% form %}
+        </div>
+<div>
+
