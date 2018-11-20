@@ -1,0 +1,4 @@
+templates/* linguist-vendored
+src/btt/templates/* linguist-vendored
+js/* linguist-vendored
+src/static/js/* linguist-vendored
